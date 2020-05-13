@@ -1,17 +1,25 @@
-# 2003_TheoDiGiacomo
- __          __  _                            _          _   _           
- \ \        / / | |                          | |        | | | |          
-  \ \  /\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |_| |__   ___  
-   \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  | __| '_ \ / _ \ 
-    \  /\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |_| | | |  __/ 
-     \/  \/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/   \__|_| |_|\___| 
-                                                                         
-                                                                         
-  _______ _____   _____   __  __ _____ _______ __  __                    
- |__   __|  __ \ / ____| |  \/  |_   _|__   __|  \/  |                   
-    | |  | |  | | |  __  | \  / | | |    | |  | \  / |                   
-    | |  | |  | | | |_ | | |\/| | | |    | |  | |\/| |                   
-    | |  | |__| | |__| | | |  | |_| |_   | |  | |  | |                   
-    |_|  |_____/ \_____| |_|  |_|_____|  |_|  |_|  |_|                   
-                                                                         
-                                                                         
+# TDG MITM
+The aim of this project is to create a MITM demonstrator using a Raspberry Pi and kali linux.
+
+The goal is not to use it for hacking but for education!
+
+
+The program will analyze the probe request messages and extract the SSID to make a copy of the access point.
+
+## Installation
+
+Clone the project with the git command:
+
+```bash
+git clone https://github.com/TheoDiGiacomo/2003_TheoDiGiacomo.git
+```
+Then, assign right with chmod command and run setup.sh
+
+```bash
+sudo ./setup.sh
+```
+## Usage
+
+```bash
+sudo ./start.sh
+```
