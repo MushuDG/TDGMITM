@@ -35,17 +35,7 @@ echo "bogus-priv" >> /etc/dnsmasq.conf
 echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmasq.conf
 
 
-
-
-
-rm -f /etc/dhcpcd.conf
-
-echo "nohook wpa_supplicant" >> /etc/dhcpcd.conf
-echo "interface wlan1" >> /etc/dhcpcd.conf
-echo "static ip_address=192.168.50.10/24" >> /etc/dhcpcd.conf
-echo "static routers=192.168.50.1" >> /etc/dhcpcd.conf
-echo "static domain_name_servers=1.1.1.1 9.9.9.9" >> /etc/dhcpcd.conf
-
+ifconfig wlan1 192.168.50.1
 sudo dhcpd -d -f -pf /var/run/dhcp-server/dhcpd.pid -cf /etc/dhcp/dhcpd.conf wlan1 &
 
 hostapd /etc/hostapd/hostapd.conf
