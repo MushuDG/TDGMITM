@@ -36,6 +36,6 @@ echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmas
 
 
 ifconfig wlan1 192.168.50.1
-sudo dhcpd -d -f -pf /var/run/dhcp-server/dhcpd.pid -cf /etc/dhcp/dhcpd.conf wlan1 &
+service isc-dhcp-server start
 
 hostapd /etc/hostapd/hostapd.conf
