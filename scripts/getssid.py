@@ -4,7 +4,7 @@ from scapy.all import *
 import os
 
 ap_list = []
-print "SC: https://gist.github.com/securitytube/5291959"
+print "Original source code: https://gist.github.com/securitytube/5291959"
 print "Welcome to the TDG MITM Script"
 print " ____  ____    ___    __  __  ____  ____  __  __ "
 print "(_  _)(  _ \  / __)  (  \/  )(_  _)(_  _)(  \/  )"
