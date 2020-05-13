@@ -13,3 +13,6 @@ cp /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
 rm -f /etc/dhcp/dhcpd.conf
 cp ./conf/dhcpd.conf /etc/dhcp/dhcpd.conf
+cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
+rm -f /etc/default/isc-dhcp-server
+echo "INTERFACESv4=\"wlan1\"" >> /etc/default/isc-dhcp-server
