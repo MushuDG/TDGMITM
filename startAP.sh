@@ -2,32 +2,50 @@
 
 rm -f /etc/hostapd/hostapd.conf
 
-echo "interface=wlan1 " >> /etc/hostapd/hostapd.conf
+echo "interface=wlan1" >> /etc/hostapd/hostapd.conf
 
-echo "driver=nl80211 " >> /etc/hostapd/hostapd.conf
-
-echo "ssid=$1" >> /etc/hostapd/hostapd.conf
+echo "ssid=CopyOf_$1" >> /etc/hostapd/hostapd.conf
 
 # mode Wi-Fi (a = IEEE 802.11a, b = IEEE 802.11b, g = IEEE 802.11g)
-echo "hw_mode=g " >> /etc/hostapd/hostapd.conf
+echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
 
 # canal de fréquence Wi-Fi (1-14)
-echo "channel=6 " >> /etc/hostapd/hostapd.conf
+echo "channel=6" >> /etc/hostapd/hostapd.conf
 
-# Wi-Fi ouvert, pas d'authentification !
-echo "auth_algs=0 " >> /etc/hostapd/hostapd.conf
+echo "wmm_enabled=0" >> /etc/hostapd/hostapd.conf
 
-# Beacon interval in kus (1.024 ms)
-echo "beacon_int=100 " >> /etc/hostapd/hostapd.conf
+echo "macaddr_acl=0" >> /etc/hostapd/hostapd.conf
 
-# DTIM (delivery trafic information message)
-echo "dtim_period=2 " >> /etc/hostapd/hostapd.conf
+echo "auth_algs=1" >> /etc/hostapd/hostapd.conf
+echo "ignore_broadcast_ssid=0" >> /etc/hostapd/hostapd.conf
+echo "wpa=2" >> /etc/hostapd/hostapd.conf
+echo "wpa_passphrase=1234567890" >> /etc/hostapd/hostapd.conf
+echo "wpa_key_mgmt=WPA-PSK" >> /etc/hostapd/hostapd.conf
+echo "wpa_pairwise=TKIP" >> /etc/hostapd/hostapd.conf
+echo "rsn_pairwise=CCMP" >> /etc/hostapd/hostapd.conf
 
-# Maximum number of stations allowed in station table
-echo "max_num_sta=255 " >> /etc/hostapd/hostapd.conf
 
-# RTS/CTS threshold; 2347 = disabled (default)
-echo "rts_threshold=2347 " >> /etc/hostapd/hostapd.conf
+rm -f /etc/dnsmasq.conf
 
-# Fragmentation threshold; 2346 = disabled (default)
-echo "fragm_threshold=2346 " >> /etc/hostapd/hostapd.conf
+#RPiHotspot config - Internet
+echo "interface=wlan1" >> /etc/dnsmasq.conf
+echo "bind-dynamic" >> /etc/dnsmasq.conf
+echo "domain-needed" >> /etc/dnsmasq.conf
+echo "bogus-priv" >> /etc/dnsmasq.conf
+echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmasq.conf
+
+
+
+
+
+rm -f /etc/dhcpcd.conf
+
+echo "nohook wpa_supplicant" >> /etc/dhcpcd.conf
+echo "interface wlan1" >> /etc/dhcpcd.conf
+echo "static ip_address=192.168.50.10/24" >> /etc/dhcpcd.conf
+echo "static routers=192.168.50.1" >> /etc/dhcpcd.conf
+echo "static domain_name_servers=1.1.1.1 9.9.9.9" >> /etc/dhcpcd.conf
+
+sudo dhcpd -d -f -pf /var/run/dhcp-server/dhcpd.pid -cf /etc/dhcp/dhcpd.conf wlan1 &
+
+hostapd /etc/hostapd/hostapd.conf
