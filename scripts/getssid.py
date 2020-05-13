@@ -20,12 +20,12 @@ def PacketHandler(pkt) :
                 print "AP MAC: %s with SSID: %s " %(pkt.addr2, pkt.info)
                 print ""
                 print "========== Creating AP       =========="
-                print " SSID: "+pkt.info
-                print " Password: "
-                print " AP IP addr.:"
+                print " SSID: CopyOf_"+pkt.info
+                print " Password: 1234567890 "
+                print " AP IP addr.: 192.168.50.1"
                 print "-----------------------------------------"
                 print ""
-                print "Please wait, the AP will reboot"
+                print "Please wait, the AP will start now!"
                 print "Starting ./scripts/startAP.sh "+pkt.info
                 os.system("./scripts/startAP.sh "+pkt.info)
                 exit()
