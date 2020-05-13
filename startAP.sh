@@ -2,40 +2,32 @@
 
 rm -f /etc/hostapd/hostapd.conf
 
-echo "# interface wlan du Wi-Fi
-interface=wlan1
+echo "interface=wlan1 " >> /etc/hostapd/hostapd.conf
 
-# nl80211 avec tous les drivers Linux mac80211
-driver=nl80211
+echo "driver=nl80211 " >> /etc/hostapd/hostapd.conf
 
-# Nom du spot Wi-Fi
-ssid=" > /etc/hostapd/hostapd.conf
-
-echo $1 > /etc/hostapd/hostapd.conf
-
-echo"
+echo "ssid=$1" >> /etc/hostapd/hostapd.conf
 
 # mode Wi-Fi (a = IEEE 802.11a, b = IEEE 802.11b, g = IEEE 802.11g)
-hw_mode=g
+echo "hw_mode=g " >> /etc/hostapd/hostapd.conf
 
 # canal de fréquence Wi-Fi (1-14)
-channel=6
+echo "channel=6 " >> /etc/hostapd/hostapd.conf
 
 # Wi-Fi ouvert, pas d'authentification !
-auth_algs=0
+echo "auth_algs=0 " >> /etc/hostapd/hostapd.conf
 
 # Beacon interval in kus (1.024 ms)
-beacon_int=100
+echo "beacon_int=100 " >> /etc/hostapd/hostapd.conf
 
 # DTIM (delivery trafic information message)
-dtim_period=2
+echo "dtim_period=2 " >> /etc/hostapd/hostapd.conf
 
 # Maximum number of stations allowed in station table
-max_num_sta=255
+echo "max_num_sta=255 " >> /etc/hostapd/hostapd.conf
 
 # RTS/CTS threshold; 2347 = disabled (default)
-rts_threshold=2347
+echo "rts_threshold=2347 " >> /etc/hostapd/hostapd.conf
 
 # Fragmentation threshold; 2346 = disabled (default)
-fragm_threshold=2346"
-" > /etc/hostapd/hostapd.conf
+echo "fragm_threshold=2346 " >> /etc/hostapd/hostapd.conf
