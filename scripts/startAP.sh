@@ -34,6 +34,18 @@ echo "domain-needed" >> /etc/dnsmasq.conf
 echo "bogus-priv" >> /etc/dnsmasq.conf
 echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmasq.conf
 
-sudo service isc-dhcp-server restart &
+rm -f /etc/sysctl.conf
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo brctl addbr br0
+sudo brctl addif br0 wlan0
+
+echo "auto br0" >> /etc/network/interfaces
+echo "iface br0 inet manual" >> /etc/network/interfaces
+echo "bridge_ports eth0 wlan0" >> /etc/network/interfaces
+
+ifconfig wlan1 192.168.50.1
+service isc-dhcp-server start
 
 hostapd /etc/hostapd/hostapd.conf
