@@ -11,7 +11,7 @@ The program will analyze the probe request messages and extract the SSID to make
 Clone the project with the git command:
 
 ```bash
-git clone https://github.com/TheoDiGiacomo/2003_TheoDiGiacomo.git
+git clone https://github.com/TheoDiGiacomo/TDGMITM.git
 ```
 Then, assign right with chmod command and run setup.sh
 
