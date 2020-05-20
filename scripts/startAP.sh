@@ -34,9 +34,7 @@ echo "domain-needed" >> /etc/dnsmasq.conf
 echo "bogus-priv" >> /etc/dnsmasq.conf
 echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmasq.conf
 
-rm -f /etc/sysctl.conf
-echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
-
+#######################################################################################################################
 sudo modprobe ipt_MASQUERADE
 sudo iptables -A POSTROUTING -t nat -o wlan0 -j MASQUERADE
 sudo iptables -A FORWARD --match state --state RELATED,ESTABLISHED --jump ACCEPT
@@ -69,6 +67,8 @@ cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 rm -f /etc/ufw/before.rules
 cp ./conf/before.rules /etc/ufw/before.rules
 sudo ufw allow from 192.168.50.0/24
+#######################################################################################################################
+
 ifconfig wlan1 192.168.50.1
 service isc-dhcp-server start
 
