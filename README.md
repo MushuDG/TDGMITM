@@ -1,7 +1,7 @@
 # TDG MITM
-The aim of this project is to create a MITM demonstrator using a Raspberry Pi and kali linux.
+The aim of this project is to create a MITM demonstrator by using a Raspberry Pi and kali linux.
 
-:warning: **Please, use it for education and not hacking!!!** 
+:warning: **Please, use it for education purpose and not hacking!!!** 
 
 
 The program will analyze the probe request messages and extract the SSID to make a copy of the access point.
