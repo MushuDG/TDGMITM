@@ -16,7 +16,7 @@ def PacketHandler(pkt) :
 
   if pkt.haslayer(Dot11Beacon) :
       if pkt.info != "":
-        if pkt.info not in ap_list :
+        if pkt.info == "2003Lab-U" :
                 print "SSID found!"
                 print ""
                 print "========== SSID Found         =========="
