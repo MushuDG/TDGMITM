@@ -41,6 +41,6 @@ iptables -A FORWARD -i wlan0 -o wlan1 -m state --state ESTABLISHED,RELATED \
 iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
 
 ifconfig wlan1 192.168.50.1
-service isc-dhcp-server start
+service isc-dhcp-server restart &
 
 hostapd /etc/hostapd/hostapd.conf
