@@ -14,7 +14,7 @@ print ""
 print "========== Looking for probe request packages =========="
 def PacketHandler(pkt) :
 
-  if pkt.haslayer(Dot11ProbeReq) :
+  if pkt.haslayer(Dot11Beacon) :
       if pkt.info != "":
         if pkt.info not in ap_list :
                 print "SSID found!"
