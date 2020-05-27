@@ -34,40 +34,11 @@ echo "domain-needed" >> /etc/dnsmasq.conf
 echo "bogus-priv" >> /etc/dnsmasq.conf
 echo "dhcp-range=192.168.50.150,192.168.50.200,255.255.255.0,12h" >> /etc/dnsmasq.conf
 
-#######################################################################################################################
-sudo modprobe ipt_MASQUERADE
-sudo iptables -A POSTROUTING -t nat -o wlan0 -j MASQUERADE
-sudo iptables -A FORWARD --match state --state RELATED,ESTABLISHED --jump ACCEPT
-sudo iptables -A FORWARD -i wlan1 --destination 192.168.50.0/24 --match state --state NEW --jump ACCEPT
-sudo iptables -A INPUT -s 192.168.50.0/24 --jump ACCEPT
-
-rm -f /etc/default/ufw
-
-echo "IPV6=yes">>/etc/default/ufw
-echo "DEFAULT_INPUT_POLICY=\"DROP\"" >> /etc/default/ufw
-echo "DEFAULT_OUTPUT_POLICY=\"ACCEPT\"" >> /etc/default/ufw
-echo "DEFAULT_FORWARD_POLICY=\"ACCEPT\"" >> /etc/default/ufw
-echo "DEFAULT_APPLICATION_POLICY=\"SKIP\"" >> /etc/default/ufw
-echo "MANAGE_BUILTINS=no" >> /etc/default/ufw
-echo "IPT_SYSCTL=/etc/ufw/sysctl.conf" >> /etc/default/ufw
-echo "IPT_MODULES=\"\"" >> /etc/default/ufw
-
-rm -f /etc/ufw/sysctl.conf
-echo "
-net/ipv4/ip_forward=1
-net/ipv4/conf/all/accept_redirects=0
-net/ipv4/conf/default/accept_redirects=0
-net/ipv6/conf/all/accept_redirects=0
-net/ipv6/conf/default/accept_redirects=0
-net/ipv4/conf/all/log_martians=0
-net/ipv4/conf/default/log_martians=0
-" >> /etc/ufw/sysctl.conf
-
-cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
-rm -f /etc/ufw/before.rules
-cp ./conf/before.rules /etc/ufw/before.rules
-sudo ufw allow from 192.168.50.0/24
-#######################################################################################################################
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -A FORWARD -i wlan1 -o wlan0 -j ACCEPT
+iptables -A FORWARD -i wlan0 -o wlan1 -m state --state ESTABLISHED,RELATED \
+         -j ACCEPT
+iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
 
 ifconfig wlan1 192.168.50.1
 service isc-dhcp-server start
