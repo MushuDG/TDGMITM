@@ -30,8 +30,8 @@ def PacketHandler(pkt) :
                 print "-----------------------------------------"
                 print ""
                 print "Please wait, the AP will start now!"
-                print "Starting ./scripts/startAP.sh "+pkt.info
-                os.system("./scripts/startAP.sh "+pkt.info)
+                print "Starting ./scripts/startAP.sh "+pkt.info+" "+pkt.addr2
+                os.system("./scripts/startAP.sh "+pkt.info+" "+pkt.addr2)
                 exit()
 
 sniff(iface="wlan1", prn = PacketHandler)
