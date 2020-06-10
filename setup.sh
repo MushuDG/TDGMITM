@@ -2,14 +2,6 @@
 #Update and upgrade system
 sudo apt-get update
 sudo apt-get upgrade
-	
-#Wget pip installer on bootstrap.pypa.io
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python2 get-pip.py
-sudo python3 get-pip.py
-
-#Install scapy python framework
-sudo pip install scapy
 
 #Install :
 #	- hostapd
@@ -19,6 +11,14 @@ sudo pip install scapy
 #	- isc-dhcp-server
 #	- ufw
 sudo apt -y install hostapd dnsmasq python python3 isc-dhcp-server ufw
+
+#Wget pip installer on bootstrap.pypa.io
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python2 get-pip.py
+sudo python3 get-pip.py
+
+#Install scapy python framework
+sudo pip install scapy
 
 #Create backup of original configuration files
 cp /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
